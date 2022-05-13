@@ -1,4 +1,4 @@
-= Jakarta EE9 TCK Runner for Payara
+= Jakarta EE10 TCK Runner for Payara
 
 This is simple wrapper script to run https://github.com/eclipse-ee4j/jakartaee-tck[Jakarta EE9 TCK binaries].
 It provides relevant `ts.jte` overrides as well as a vendor implementation of the configuration interface.
@@ -13,7 +13,7 @@ The runner will
 == Prerequisites
 
 * Binary build of the TCK,  (`jakartaeetck.zip`)
-* Build of glassfish 6  (`latest-glassfish.zip`)
+* Build of glassfish 7  (`latest-glassfish.zip`)
 * Build of payara, e.g. nightly from Jenkins (`payara-prerelease.zip`)
 * Linux system with
 ** Java 8 (referenced by `JAVA_HOME` and referenced in the `PATH`)
