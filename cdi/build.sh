@@ -13,7 +13,7 @@ PORTING=$SCRIPTPATH/cditck-porting
 OUTPUT=$PORTING/bundles
 
 cd $PORTING
-git checkout EE9
+git checkout EE10
 cd $SCRIPTPATH
 
 rm $PORTING/latest-glassfish.zip
