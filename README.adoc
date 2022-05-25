@@ -1,6 +1,6 @@
 = Jakarta EE10 TCK Runner for Payara
 
-This is simple wrapper script to run https://github.com/eclipse-ee4j/jakartaee-tck[Jakarta EE9 TCK binaries].
+This is simple wrapper script to run https://github.com/eclipse-ee4j/jakartaee-tck[Jakarta EE10 TCK binaries].
 It provides relevant `ts.jte` overrides as well as a vendor implementation of the configuration interface.
 
 The runner will

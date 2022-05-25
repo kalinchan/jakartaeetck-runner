@@ -73,13 +73,12 @@ if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
      -Djavax.xml.accessExternalDTD=file,http"
 
 else
-  export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/modules/endorsed \
+  export ANT_OPTS="-Xmx2G \
                  -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
 		 -DenableExternalEntityProcessing=true \
                  -Djavax.xml.accessExternalDTD=file,http"
-  export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/modules/endorsed \
-                 -Djavax.xml.accessExternalStylesheet=all \
+  export CTS_ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
      -Djavax.xml.accessExternalDTD=file,http"
 
@@ -147,13 +146,13 @@ echo "" >> ${CTS_HOME}/change-admin-password.txt
 installRI() {
   printf  "
 ******************************************************
-* Installing CI/RI (Glassfish 6.0)                   *
+* Installing CI/RI (Glassfish 7.0)                   *
 ******************************************************
 
 "
 
   ##### installRI.sh starts here #####
-  echo "Download and install GlassFish 6.0.0 ..."
+  echo "Download and install GlassFish 7.0.0 ..."
   if [ -z "${GF_BUNDLE_URL}" ]; then
     if [ -z "$DEFAULT_GF_BUNDLE_URL" ]; then
       echo "[ERROR] GF_BUNDLE_URL not set"
@@ -337,8 +336,7 @@ if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
                  -Djavax.xml.accessExternalSchema=all \
      -Djavax.xml.accessExternalDTD=file,http"
 else
-  export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/modules/endorsed \
-                 -Djavax.xml.accessExternalStylesheet=all \
+  export CTS_ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
      -Djavax.xml.accessExternalDTD=file,http"
 fi

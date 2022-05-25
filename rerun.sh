@@ -48,8 +48,7 @@ if [ -z "${CTS_HOME}" ]; then
 fi
 export TS_HOME=${CTS_HOME}/jakartaeetck/
 
-export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/modules/endorsed \
--Djavax.xml.accessExternalStylesheet=all \
+export CTS_ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all \
 -Djavax.xml.accessExternalSchema=all \
 -Djavax.xml.accessExternalDTD=file,http"
 
