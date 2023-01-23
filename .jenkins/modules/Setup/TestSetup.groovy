@@ -1,7 +1,7 @@
 echo "Copying Server Artifact"
 
 copyArtifacts(projectName: "${env.JOB_NAME}", selector: specific("${env.BUILD_NUMBER}"), flatten: true);
-def distribution = ${CFG.params.profile} == 'web' ? 'payara-web' : 'payara'
+def distribution = "${CFG.params.profile}"  == 'web' ? 'payara-web' : 'payara'
 echo "Installing Payara ${distribution}"
 sh "mvn install:install-file -DgroupId=fish.payara.distributions -DartifactId=${distribution} -Dversion=${CFG.'build.version'} -Dpackaging=zip -Dfile=${pwd()}/${distribution}.zip"
 
