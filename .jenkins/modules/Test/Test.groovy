@@ -21,96 +21,96 @@ echo 'Debug 4'
 echo "Env Config: ${envConfig}"
 env.JAVA_HOME = "${CFG.jdk}"
 echo 'Debug 5'
-withEnv (envConfig) {
-    echo 'Debug 6'
-    def shellScript
-    def junitReportLocation
-    // non-tck suites, like CDI and Beanvalidation require different script and their test results are elsewhere
-    switch (job) {
-        case "activation":
-        case "jaf":
-            shellScript = """
-                                    mkdir results
-                                    cd jaf
-                                    ./build.sh
-                                    ./run.sh
-                                """
-            junitReportLocation = 'jaf/jaf-tck/results/**/*-junit-report.xml'
-            break
-        case "cdi":
-            shellScript = """
-                                    mkdir results
-                                    cd cdi
-                                    ./build.sh
-                                    ./run.sh
-                                """
-            junitReportLocation = 'cdi/cditck-porting/cdi-tck-report/**/*-junit-report.xml'
-            break
-        case "beanvalidation":
-            shellScript = """
-                                    mkdir results
-                                    cd bv
-                                    ./build.sh
-                                    ./run.sh
-                                """
-            junitReportLocation = 'bv/bvtck-porting/bvtck-report/**/*-junit-report.xml'
-            break
-        case "di":
-            shellScript = """
-                                    mkdir results
-                                    cd di
-                                    ./build.sh
-                                    ./run.sh
-                                """
-            junitReportLocation = 'di/ditck-porting/330tck-report/*-junit-report.xml'
-            break
-        case "dsol":
-        case "debugging":
-            shellScript = """
-                                    mkdir results
-                                    cd dsol
-                                    ./build.sh
-                                    ./run.sh
-                                """
-            junitReportLocation = 'dsol/dsol-tck/debugging-tck-junit-report.xml'
-            break
-        case "javamail-standalone":
-        case "mail-standalone":
-            shellScript = """
-                                    mkdir results
-                                    cd mail
-                                    ./build.sh
-                                    ./run.sh
-                                """
-            junitReportLocation = 'mail/mail-tck/mail-tck/JTreport/**/*, mail/mail-tck/mail-tck/JTreport-Pluggability/**/*'
-            break
-        case "jaxb":
-        case "xml-binding":
-            shellScript = """
-                                    mkdir results
-                                    cd jaxb
-                                    ./build.sh
-                                    ./run.sh
-                                """
-            junitReportLocation = 'jaxb/jaxb-tck/results/junitreports/JAXB-TCK-junit-report.xml'
-            break
-        default:
-            // forward and reverse are keywords that are passed via environment to the script
-            def userKeywords = ""
-            if (job.endsWith("_forward")) {
-                userKeywords = 'USER_KEYWORDS="forward"'
-                job = job.replace("_forward", "")
-            } else if (job.endsWith("_reverse")) {
-                userKeywords = 'USER_KEYWORDS="reverse"'
-                job = job.replace("_reverse", "")
-            }
-            shellScript = """
-                                    ${userKeywords} ./run.sh ${job}
-                                """
-            junitReportLocation = 'cts_home/jakartaeetck/results/junitreports/*.xml'
-            break
-    }
-}
+//withEnv (envConfig) {
+//    echo 'Debug 6'
+//    def shellScript
+//    def junitReportLocation
+//    // non-tck suites, like CDI and Beanvalidation require different script and their test results are elsewhere
+//    switch (job) {
+//        case "activation":
+//        case "jaf":
+//            shellScript = """
+//                                    mkdir results
+//                                    cd jaf
+//                                    ./build.sh
+//                                    ./run.sh
+//                                """
+//            junitReportLocation = 'jaf/jaf-tck/results/**/*-junit-report.xml'
+//            break
+//        case "cdi":
+//            shellScript = """
+//                                    mkdir results
+//                                    cd cdi
+//                                    ./build.sh
+//                                    ./run.sh
+//                                """
+//            junitReportLocation = 'cdi/cditck-porting/cdi-tck-report/**/*-junit-report.xml'
+//            break
+//        case "beanvalidation":
+//            shellScript = """
+//                                    mkdir results
+//                                    cd bv
+//                                    ./build.sh
+//                                    ./run.sh
+//                                """
+//            junitReportLocation = 'bv/bvtck-porting/bvtck-report/**/*-junit-report.xml'
+//            break
+//        case "di":
+//            shellScript = """
+//                                    mkdir results
+//                                    cd di
+//                                    ./build.sh
+//                                    ./run.sh
+//                                """
+//            junitReportLocation = 'di/ditck-porting/330tck-report/*-junit-report.xml'
+//            break
+//        case "dsol":
+//        case "debugging":
+//            shellScript = """
+//                                    mkdir results
+//                                    cd dsol
+//                                    ./build.sh
+//                                    ./run.sh
+//                                """
+//            junitReportLocation = 'dsol/dsol-tck/debugging-tck-junit-report.xml'
+//            break
+//        case "javamail-standalone":
+//        case "mail-standalone":
+//            shellScript = """
+//                                    mkdir results
+//                                    cd mail
+//                                    ./build.sh
+//                                    ./run.sh
+//                                """
+//            junitReportLocation = 'mail/mail-tck/mail-tck/JTreport/**/*, mail/mail-tck/mail-tck/JTreport-Pluggability/**/*'
+//            break
+//        case "jaxb":
+//        case "xml-binding":
+//            shellScript = """
+//                                    mkdir results
+//                                    cd jaxb
+//                                    ./build.sh
+//                                    ./run.sh
+//                                """
+//            junitReportLocation = 'jaxb/jaxb-tck/results/junitreports/JAXB-TCK-junit-report.xml'
+//            break
+//        default:
+//            // forward and reverse are keywords that are passed via environment to the script
+//            def userKeywords = ""
+//            if (job.endsWith("_forward")) {
+//                userKeywords = 'USER_KEYWORDS="forward"'
+//                job = job.replace("_forward", "")
+//            } else if (job.endsWith("_reverse")) {
+//                userKeywords = 'USER_KEYWORDS="reverse"'
+//                job = job.replace("_reverse", "")
+//            }
+//            shellScript = """
+//                                    ${userKeywords} ./run.sh ${job}
+//                                """
+//            junitReportLocation = 'cts_home/jakartaeetck/results/junitreports/*.xml'
+//            break
+//    }
+//}
 
 echo "Stage runs at ${env.NODE_NAME}"
 echo "Java version is: ${JAVA_HOME}"
