@@ -1,10 +1,11 @@
 #!groovy
-
+echo 'Debug 1'
 MPLPostStep('always') {
     sh returnStatus: true, script: "docker stop james-mail jwsdp"
     echo "Cleaning up workspace from parent"
     cleanWs()
 }
+echo 'Debug 2'
 
 MPLPostStep('failure') {
     echo "There are test failures, archiving logs"
@@ -13,11 +14,15 @@ MPLPostStep('failure') {
     //sh "docker ps -f name='james-mail' && docker logs james-mail 2>1| gzip -c > james.log.gz"
     //archiveArtifacts artifacts: 'james.log.gz', allowEmptyArchive: true
 }
+echo 'Debug 3'
 
 def envConfig = getTCKConfig("${CFG.suiteName}").flatten()
+echo 'Debug 4'
 echo "Env Config: ${envConfig}"
 env.JAVA_HOME = "${CFG.jdk}"
+echo 'Debug 5'
 withEnv (envConfig) {
+    echo 'Debug 6'
     def shellScript
     def junitReportLocation
     // non-tck suites, like CDI and Beanvalidation require different script and their test results are elsewhere
