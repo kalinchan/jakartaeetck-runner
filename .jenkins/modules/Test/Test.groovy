@@ -8,10 +8,10 @@ MPLPostStep('always') {
 
 MPLPostStep('failure') {
     echo "There are test failures, archiving logs"
-    archiveArtifacts artifacts: 'results/**/*.tar.gz,results/*.tar.gz'
+    //archiveArtifacts artifacts: 'results/**/*.tar.gz,results/*.tar.gz'
     // since we have mail related issues as well, let's collect james output as well
-    sh "docker ps -f name='james-mail' && docker logs james-mail 2>1| gzip -c > james.log.gz"
-    archiveArtifacts artifacts: 'james.log.gz', allowEmptyArchive: true
+    //sh "docker ps -f name='james-mail' && docker logs james-mail 2>1| gzip -c > james.log.gz"
+    //archiveArtifacts artifacts: 'james.log.gz', allowEmptyArchive: true
 }
 
 def envConfig = getTCKConfig("${CFG.suiteName}").flatten()
