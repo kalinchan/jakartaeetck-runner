@@ -17,11 +17,10 @@ def envConfig = getTCKConfig("${CFG.suiteName}").flatten()
 echo "Env Config: ${envConfig}"
 env.JAVA_HOME = "${CFG.jdk}"
 withEnv (envConfig) {
-    echo 'Debug 6'
     def shellScript
     def junitReportLocation
     // non-tck suites, like CDI and Beanvalidation require different script and their test results are elsewhere
-    switch (job) {
+    switch ("${CFG.suiteName}") {
         case "activation":
         case "jaf":
             shellScript = """
