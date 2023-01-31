@@ -15,7 +15,7 @@ MPLPostStep('failure') {
     //archiveArtifacts artifacts: 'james.log.gz', allowEmptyArchive: true
 }
 echo 'Debug 3'
-
+echo "${CFG.suiteName}"
 def envConfig = getTCKConfig("${CFG.suiteName}").flatten()
 echo 'Debug 4'
 echo "Env Config: ${envConfig}"
@@ -142,20 +142,25 @@ if (testResult.failCount > 0) {
 sh returnStatus: true, script: "docker stop james-mail jwsdp"
 
 def getTCKConfig(job) {
+    echo "d1"
     def baseURL = "${JENKINS_URL}userContent/tck"
+    echo "d2"
     def tckSpecificConfig = ["BASE_URL=${baseURL}",
                              "SAFE_JOB_NAME=${job.replaceAll('/', '_')}",
                              "TZ=UTC",
                              "JAVA_HOME=${tool params.jdkVer}",
                              "PATH+JAVA=${tool params.jdkVer}/bin"]
+    echo "d3"
 
 
     tckSpecificConfig << ["TCK_URL=https://download.eclipse.org/jakartaee/platform/8/jakarta-jakartaeetck-8.0.2.zip",
                           "GLASSFISH_URL=${baseURL}/glassfish-5.1.0.zip",
                           "BV_TCK_BUNDLE_URL=${baseURL}/beanvalidation-tck-dist-2.0.5.zip"]
+    echo "d4"
 
     if (job == "dsol" || job == "debugging") {
         tckSpecificConfig << ["TCK_BUNDLE_BASE_URL=https://download.eclipse.org/jakartaee/debugging/1.0/"]
     }
+    echo "d5"
     return tckSpecificConfig
 }
