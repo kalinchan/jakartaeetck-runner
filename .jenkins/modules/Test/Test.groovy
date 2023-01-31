@@ -17,7 +17,7 @@ MPLPostStep('failure') {
 def envConfig = getTCKConfig("${CFG.suiteName}").flatten()
 echo "Env Config: ${envConfig}"
 env.JAVA_HOME = "${CFG.jdk}"
-withEnv(envConfig) {
+withEnv (envConfig) {
     def shellScript
     def junitReportLocation
     // non-tck suites, like CDI and Beanvalidation require different script and their test results are elsewhere
