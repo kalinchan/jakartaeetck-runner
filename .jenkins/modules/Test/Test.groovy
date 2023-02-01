@@ -19,8 +19,9 @@ env.JAVA_HOME = "${CFG.jdk}"
 def shellScript
 def junitReportLocation
 withEnv (envConfig) {
+    def job = "${CFG.suiteName}"
     // non-tck suites, like CDI and Beanvalidation require different script and their test results are elsewhere
-    switch ("${CFG.suiteName}") {
+    switch (job) {
         case "activation":
         case "jaf":
             shellScript = """
