@@ -150,7 +150,9 @@ def getTCKConfig(job) {
     tckSpecificConfig << ["TCK_URL=https://download.eclipse.org/jakartaee/platform/8/jakarta-jakartaeetck-8.0.2.zip",
                           "GLASSFISH_URL=${baseURL}/glassfish-5.1.0.zip",
                           "BV_TCK_BUNDLE_URL=${baseURL}/beanvalidation-tck-dist-2.0.5.zip"]
+    def distribution = "${CFG.params.profile}"  == 'web' ? 'payara-web.zip' : 'payara.zip'
 
+    tckSpecificConfig << ["GF_VI_BUNDLE_URL=localhost:8000/${distribution}"]
     if (job == "dsol" || job == "debugging") {
         tckSpecificConfig << ["TCK_BUNDLE_BASE_URL=https://download.eclipse.org/jakartaee/debugging/1.0/"]
     }
